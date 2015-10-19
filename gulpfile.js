@@ -5,16 +5,14 @@ var gulp = require('gulp'),
     rename = require('gulp-rename');
 
 var paths = {
-  sassSrcPath: ['./source/css/*.scss'],
-  sassDestPath: ['./build/css'] // var does not work below
-};
-
+  sassSrcPath: './source/css/*.scss',
+  sassDestPath: './build/css'
+}
 
 gulp.task('styles', function () {
   return sass(paths.sassSrcPath, {})
   .pipe(autoprefixer('last 2 version'))
-  //.pipe(gulp.dest(paths.sassDestPath));
-  .pipe(gulp.dest('./build/css'))
+  .pipe(gulp.dest(paths.sassDestPath))
   .pipe(rename({suffix: '.min'}))
   .pipe(minifycss())
   .pipe(gulp.dest('./build/css'));
