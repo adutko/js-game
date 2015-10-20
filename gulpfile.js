@@ -29,6 +29,13 @@ gulp.task('process-scripts', function () {
     .pipe(gulp.dest('./build/js/'));
 })
 
+gulp.task('watch', function() {
+  gulp.watch(
+    'source/js/*.js', ['process-scripts'],
+    'source/css/*.scss', ['process-styles']
+    )
+});
+
 gulp.task('default', function () {
   console.log('I have configured a gulpfile');
 });
