@@ -4,7 +4,8 @@ var gulp = require('gulp'),
     minifycss = require('gulp-minify-css'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    babel = require("gulp-babel");
 
 var paths = {
   sassSrcPath: './source/css/*.scss',
@@ -25,6 +26,7 @@ gulp.task('process-styles', function () {
 // Compile and process JS
 gulp.task('process-scripts', function () {
   return gulp.src('source/js/*.js')
+    .pipe(babel())
     .pipe(concat('main.js'))
     .pipe(gulp.dest('./build/js/'))
     .pipe(rename({suffix: '.min'}))
