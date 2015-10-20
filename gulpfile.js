@@ -11,6 +11,7 @@ var paths = {
   sassDestPath: './build/css'
 }
 
+// Compile and process sass
 gulp.task('process-styles', function () {
   return sass(paths.sassSrcPath, {})
     .pipe(autoprefixer('last 2 version'))
@@ -20,6 +21,8 @@ gulp.task('process-styles', function () {
     .pipe(gulp.dest('./build/css'));
 });
 
+
+// Compile and process JS
 gulp.task('process-scripts', function () {
   return gulp.src('source/js/*.js')
     .pipe(concat('main.js'))
@@ -29,6 +32,8 @@ gulp.task('process-scripts', function () {
     .pipe(gulp.dest('./build/js/'));
 })
 
+
+// Watch files for changes
 gulp.task('watch', function() {
   gulp.watch(
     'source/js/*.js', ['process-scripts'],
@@ -36,6 +41,6 @@ gulp.task('watch', function() {
     )
 });
 
-gulp.task('default', function () {
-  console.log('I have configured a gulpfile');
-});
+
+// Default Task
+gulp.task('default', ['process-styles', 'process-scripts', 'watch']);
