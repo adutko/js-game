@@ -3,4 +3,5 @@
 /build
 /dist
 /vendor
-/.sass-cache/*
+**/.sass-cache
+**/.sass-cache/*
